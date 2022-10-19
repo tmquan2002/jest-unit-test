@@ -1,28 +1,57 @@
-import {isPrime, isReversible, sumDigits, solve} from './solution.js';
+import { isPrime, isReversible, sumDigits, solve } from './solution'
 
-describe('Test Exception', () => {
-    test('N = Not Number', () => {
-        expect(() => solve("hgfdbvheyefrb")).toThrow();
-    });
+/*
+ * Test sub functions
+ */
+describe("Test checking prime", () => {
+    const testCases = [
+        [2, true],
+        [3, true],
+        [4, false]
+    ]
+    test.each(testCases)("N = %i", (n, e) => {
+        expect(isPrime(n)).toBe(e)
+    })
+})
+
+describe("Test checking reversible", () => {
+    const testCases = [
+        [2, true],
+        [22, true],
+        [909, true],
+        [1431, false]
+    ]
+    test.each(testCases)("N = %i", (n, e) => {
+        expect(isReversible(n)).toBe(e)
+    })
+})
+
+describe("Test sum digits", () => {
+    const testCases = [
+        [2, 2],
+        [785, 20],
+        [89416515, 39]
+    ]
+    test.each(testCases)("N = %i", (n, e) => {
+        expect(sumDigits(n)).toBe(e)
+    })
+})
+
+/*
+ * Test main function
+ */
+describe("Test exception", () => {
+    test('n != number', () => {
+        expect(() => solve('a!')).toThrow()
+    })
     test('N = 0', () => {
-        expect(() => solve(0)).toThrow(/greater/);
-    });
-});
+        expect(() => solve(0)).toThrow(/greater/)
+    })
+})
 
-//DDT
-const testCase = [
-    [1, [2, 3, 5, 7]],
-    [2, [11]],
-    [3, [101, 131, 151, 191, 313, 353, 787]],
-    [4, []],
-    [5, [
-        10301, 10501, 10601,
-        11311, 11411, 13331,
-        18481, 30103, 30203,
-        31013, 34843, 37273,
-        38083, 73237, 74047
-    ]],
-    [6, []],
+// DDT
+const testCases = [
+    [8, []],
     [7, [
         1003001, 1022201, 1092901, 1120211, 1123211,
         1190911, 1201021, 1221221, 1280821, 1300031,
@@ -39,11 +68,33 @@ const testCase = [
         9779779, 9787879, 9795979, 9818189, 9908099,
         9916199, 9932399
     ]],
-    [8, []]
+    [6, []],
+    [5, [
+        10301, 10501, 10601,
+        11311, 11411, 13331,
+        18481, 30103, 30203,
+        31013, 34843, 37273,
+        38083, 73237, 74047
+    ]],
+    [4, []],
+    [3, [
+        101, 131, 151,
+        191, 313, 353,
+        787
+    ]],
+    [2, [11]],
+    [1, [2, 3, 5, 7]]
 ]
 
-describe('DDT', () => {
-    test.each(testCase)("N = %i", (n, e) => {
-        expect(solve(n)).toEqual(e)
+describe("DDT sequence", () => {
+    test.each(testCases)("N = %i", (n, e) => {
+        expect(solve(n)).toStrictEqual(e)
     })
-});
+})
+
+// Run all test cases at the same time. Should use "concurrent"
+describe("DDT Concurrence", () => {
+    test.concurrent.each(testCases)("N = %i", (n, e) => {
+        expect(solve(n)).toStrictEqual(e)
+    })
+})
