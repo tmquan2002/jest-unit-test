@@ -5,6 +5,7 @@
 ### You will find this repo the following stuff: 
 
 * The solution.js - an infamous math problem from R.ODE BATTLE 2022
+* The solution.test.js - this is where the testing begin
 * Unit Test script using Jest framework
 
 #### Connect me via quantm.lqd@gmail.com
