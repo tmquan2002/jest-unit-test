@@ -6,7 +6,7 @@ export function printList() {
     let n = document.getElementById("numOfDigits").value;
 
     if (n < 1) {
-        result.innerHTML = "None " + n + " digits integer satisfy the 3 conditions";
+        result.innerHTML = "Your input must be more than 0 ";
         return;
     }
     let list = [];
@@ -18,5 +18,5 @@ export function printList() {
     else result.innerHTML = "None " + n + " digits integer satisfy the 3 conditions";
 }
 function AddToResult(item) {
-    document.getElementById("result").innerHTML += item + ",&nbsp;&nbsp;&nbsp;";
+    document.getElementById("result").innerHTML += item + ", ";
 }
