@@ -86,11 +86,11 @@ const testCases = [
     [1, [2, 3, 5, 7]]
 ]
 
-describe("DDT sequence", () => {
-    test.each(testCases)("N = %i", (n, e) => {
-        expect(solve(n)).toStrictEqual(e)
-    })
-})
+// describe("DDT sequence", () => {
+//     test.each(testCases)("N = %i", (n, e) => {
+//         expect(solve(n)).toStrictEqual(e)
+//     })
+// })
 
 // Run all test cases at the same time. Should use "concurrent"
 describe("DDT Concurrence", () => {
